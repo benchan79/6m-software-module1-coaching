@@ -17,18 +17,37 @@ const priceList = [10.5, 9.9, 8.9, 4.5];
 
 // Add code here
 
+function calcFunc(priceList) {
+  const totalPrice = priceList.reduce(
+    (accumulator, currentValue) => accumulator + currentValue, 0
+  );
+
+  const gstFunc = () => {
+    const payablePrice = totalPrice * 1.07;
+    return payablePrice;
+  }
+
+  return gstFunc()
+}
+
+console.log(calcFunc(priceList));
 /*
     Task 2. Manipulate the "queue" array.
 */
 
 function createQueue(fn) {
   const queue = [1, 2, 3, 4];
-
+ 
   return fn(queue);
 }
 
 // Add code here - define the function that adds "start" and "last" to a given array
 
-const result = createQueue(); // Add code here - pass a reference of a function as an argument
+const queueAdder = (queue) => {
+  queue.push('last');
+  queue.unshift('first');
+  return queue;
+}
 
+const result = createQueue(queueAdder); // Add code here - pass a reference of a function as an argument
 console.log(result); // Expected output: ["start", 1, 2, 3, 4, "last"];
